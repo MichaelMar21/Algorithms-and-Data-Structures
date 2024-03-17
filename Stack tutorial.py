@@ -1,4 +1,6 @@
- class Stack:
+from collections import deque
+
+class Stack:
     def __init__(self):
         self.container = deque()
     
@@ -16,3 +18,20 @@
     
     def size(self):
         return len(self.container)
+    
+    def reverse_string(self, text):
+        stack = Stack()
+        for x in text:  
+            stack.push(x)
+        rstr = ''
+        while stack.size() != 0:
+            rstr += stack.pop()
+        return rstr
+    
+#Ex.1 
+
+stack = Stack()
+text = "We will conquere COVID-19"
+print(stack.reverse_string(text))
+    
+    
