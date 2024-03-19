@@ -20,7 +20,7 @@ class Node:
             
             
         
-    def print_tree(self, command):
+    def print_tree(self, command, level_range):
         
         prefix = ' ' * self.get_level() * 3
         if command == "name":
@@ -29,9 +29,9 @@ class Node:
             print(prefix + self.designation)
         elif command == 'both':
             print(prefix + self.name + '(' + self.designation + ')')
-        if self.children:
+        if self.children and self.get_level() < level_range:
             for child in self.children:
-                child.print_tree()
+                child.print_tree(command, level_range)
                 
 
 
@@ -58,9 +58,12 @@ def build_management_tree():
     return ceo
 
 if __name__ == '__main__':
-    root = build_managment_tree()
-    root.print_tree("name")
+    root = build_management_tree()
+    root.print_tree("name", 10)
+    root.print_tree("name", 2)
+    """
     root.print_tree("designation")
     root.print_tree("both")
+    """
 
         
